@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
+  entry: "./src/index.ts",
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
@@ -14,16 +15,26 @@ module.exports = {
     }),
   ],
   mode: "development",
-  output: {
-    clean: true,
-  },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
     ],
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+  output: {
+    clean: true,
+    filename: "bundle.js",
+    directory: path.resolve(__dirname, "dist"),
   },
   devServer: {
     static: {
