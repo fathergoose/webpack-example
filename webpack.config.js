@@ -34,7 +34,7 @@ module.exports = {
   output: {
     clean: true,
     filename: "bundle.js",
-    directory: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist"),
   },
   devServer: {
     static: {
